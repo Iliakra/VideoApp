@@ -7,14 +7,7 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import {StyleSheet, View, Image, TextInput, Button} from 'react-native';
 
 import {
   Header,
@@ -29,7 +22,6 @@ const App: () => React$Node = () => {
   return (
     <>
       <View style={styles.body}>
-        <Text style={styles.sectionTitle}>Step One</Text>
         <RNCamera
           style={{
             position: 'absolute',
@@ -39,18 +31,39 @@ const App: () => React$Node = () => {
             bottom: 0,
           }}
         />
+        <Image style={styles.image} source={require('images/mask-new1.png')} />
+        <View style={styles.container}>
+          <TextInput
+            style={{
+              height: 35,
+              width: 250,
+              borderColor: 'gray',
+              borderWidth: 1,
+              left: 10,
+            }}
+            placeholder="Название файла"
+          />
+          <Button title="Сохранить" />
+        </View>
       </View>
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  body: {
-    backgroundColor: Colors.white,
+  image: {
+    position: 'absolute',
+    top: 0,
+    width: 420,
+    height: 650,
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    position: 'absolute',
+    top: 550,
+    color: 'black',
   },
 });
 
