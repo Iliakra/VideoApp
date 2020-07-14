@@ -7,64 +7,91 @@
  */
 
 import React from 'react';
-import {StyleSheet, View, Image, TextInput, Button} from 'react-native';
-
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import {RNCamera} from 'react-native-camera';
+import useState from 'react';
+import {Container, Header, Content, Form, Item, Picker} from 'native-base';
+import VideoScreen from './components/VideoScreen';
 
 const App: () => React$Node = () => {
+  const [state, setState] = useState({
+      selected: undefined,
+      name: value,
+      surname: value,
+  })
+  
+  onValueChange(value: string) {
+    this.setState({
+      selected: value,
+    });
+  }
   return (
     <>
-      <View style={styles.body}>
-        <RNCamera
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-          }}
-        />
-        <Image style={styles.image} source={require('images/mask-new1.png')} />
-        <View style={styles.container}>
-          <TextInput
-            style={{
-              height: 35,
-              width: 250,
-              borderColor: 'gray',
-              borderWidth: 1,
-              left: 10,
-            }}
-            placeholder="Название файла"
-          />
-          <Button title="Сохранить" />
-        </View>
-      </View>
+      <Container>
+        <Header />
+        <Content>
+          <Form>
+            <Item picker>
+              <Picker
+                mode="dropdown"
+                style={{width: 120}}
+                placeholder="Select your pharmacy"
+                placeholderStyle={{color: '#bfc6ea'}}
+                selectedValue={state.selected}
+                onValueChange={onValueChange()}>
+                <Picker.Item label="Pharmacy 1" value="key0" />
+                <Picker.Item label="Pharmacy 2" value="key1" />
+                <Picker.Item label="Pharmacy 3" value="key2" />
+                <Picker.Item label="Pharmacy 4" value="key3" />
+                <Picker.Item label="Pharmacy 5" value="key4" />
+              </Picker>
+            </Item>
+          </Form>
+          <View style={styles.container}>
+            <TextInput
+              style={{
+                height: 35,
+                width: 250,
+                borderColor: 'gray',
+                borderWidth: 1,
+                left: 10,
+              }}
+              placeholder="Имя"
+              onChangeText={(value) => setState({name: value})}
+              value={state.name}
+            />
+            <TextInput
+              style={{
+                height: 35,
+                width: 250,
+                borderColor: 'gray',
+                borderWidth: 1,
+                left: 10,
+              }}
+              placeholder="Фамилия"
+              onChangeText={(value) => this.setState({surname: value})}
+              value={state.surname}
+            />
+            <Button title="Сохранить"
+              onClick={(e) => {
+                if (typeof(state.name && state.suname) === "string") {
+                  return <VideoScreen state={state}/>}
+                }} />
+          </View>
+        </Content>
+      </Container>
     </>
   );
 };
 
-const styles = StyleSheet.create({
-  image: {
-    position: 'absolute',
-    top: 0,
-    width: 420,
-    height: 650,
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    position: 'absolute',
-    top: 550,
-    color: 'black',
-  },
-});
+
 
 export default App;
+
+/*container: {
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  position: 'absolute',
+  top: 550,
+  color: 'black',
+},
+*/
