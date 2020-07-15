@@ -45,7 +45,7 @@ const App: () => React$Node = () => {
               </Picker>
             </Item>
           </Form>
-          <View style={styles.container}>
+          <View>
             <TextInput
               style={{
                 height: 35,
@@ -72,7 +72,7 @@ const App: () => React$Node = () => {
             />
             <Button title="Сохранить"
               onClick={(e) => {
-                if (typeof(state.name && state.suname) === "string") {
+                if (typeof(state.name) && typeof(state.surname) === "string") {
                   return <VideoScreen state={state}/>}
                 }} />
           </View>
@@ -85,13 +85,3 @@ const App: () => React$Node = () => {
 
 
 export default App;
-
-/*container: {
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  position: 'absolute',
-  top: 550,
-  color: 'black',
-},
-*/
