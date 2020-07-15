@@ -9,6 +9,7 @@
 import React from 'react';
 import useState from 'react';
 import {Container, Header, Content, Form, Item, Picker} from 'native-base';
+import {TextInput, Button} from 'react-native';
 import VideoScreen from './components/VideoScreen';
 
 const App: () => React$Node = () => {
